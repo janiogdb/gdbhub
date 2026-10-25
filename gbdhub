@@ -95,7 +95,7 @@ local function loadImages(data)
  for name,encoded in pairs(data) do
   local ok,content=pcall(decode,encoded)
   if ok then
-   local filename='GDBHub-v33-'..name..'.png'
+   local filename='GDBHub-v34-'..name..'.png'
    local saved=pcall(writefile,filename,content)
    if saved then
     local loaded,id=pcall(getcustomasset,filename)
@@ -139,7 +139,7 @@ local function rarityImage(parent,info,position,size)
  if asset then return make('ImageLabel',{Name='RarityBadge',Position=position,Size=size,BackgroundTransparency=1,Image=asset,ScaleType=Enum.ScaleType.Fit,Active=false},parent) end
 end
 
-local function make(class,props,parent)
+make=function(class,props,parent)
  local x=Instance.new(class)
  for key,value in pairs(props) do
   local ok,err=pcall(function() x[key]=value end)
@@ -1193,7 +1193,7 @@ local imageData={
   'u1lqp/h+QNEzEId8qzvFVHaIcye3ky6PUpj0WD9Z46HPPcATnW+x0JlhvFCWcuirFxWkXeprqgWeeM7nHx5cYfzRhOef8/jxX2sQ1Fu42UzrN14pQ+lufeFz',
   'z8ozsxNctXY9U/NT/P3RB1g6eo4uS2TEjFUFL4wpl6o8/NIir77zs/zFb+3muteNUyquUlrTZbTYZVMt4apthmazwrmTKV97osvBcxnDFUNWMkim+ImSGkMs',
   'YINc4V/tpFRKm/mJn/pb7nzr6/jDn/0q3dkavipDbi07R2o8M30C379oCheszYehYtHkGdso45r1NUbrBS4stDk706U6EqAuZVSFd3zfOnZvEtKZLsVySlky',
-  'Vk8uMvXIh7nv3+7hSv9KNtU207RK4oSClmjTJXMdGhJipEVPe9onlQxV33g4Mm1qwhDj2hgtwih65ewI9vw1UFeOLp3ipewlYqyOmXU676Zkwc2RST8ndjgl',
+  'Vk8uMvXIh7nv3+7hSv9KNtU207RK4oSClmjTJXMdGhJipEVPe9onlQxV34g4Mm1qwhDj2hgtwih65ewI9vw1UFeOLp3ipewlYqyOmXU676Zkwc2RST8ndjgl',
   'ww3cfIa6lAlikad7hznoziri6JPQ037elm49xOXXl8OR5dxORfKOawUGHRb5eTtxqTbjSKIsZbQcUvQKLPV6kgkEnqeqqWQu33ZnSY+r9uykWnS41Taqhje+',
   'eTd/84n9dJoVrECrGVHwPbLYZ2WuTX9qFQpxnhTqpthihj+5Vp7++GF9/IuP867feTOTV9TQblvVZZL2OpT9kHox5D8//i1uvGUDxZKfH24VJUoka3c1O78k',
   'IVb7GiM2A8lyMEcWqxEPQwnPBrkFNssGB+iMXpbSXWqy6d23MXX/SX7rS38pU3NT+vs3/4i88vU3cPDxEywd6uMXaxKkOczDt0LfZWSxj4owURzB1wpxpGwo',
@@ -1740,7 +1740,7 @@ local imageData={
   'nsbqiumgWyr0l/2cwlIcrxR5hkt/R1a8Q/mfK3yxRariEpPNqZMUtK80TOiFzLSmCNRjW++5PPvCF7Jr96McnjvBULCGvt4Bwk6NzfFqOoMdhpMSwc6u1qNA',
   '1tTrlBqOWTspCzqjUxzHEBBRJSUtPJt5triqYdDz5RmDq1jbjemxHkdtV44lc2RaInKooyttXVRLWXzpUastsiJVQZebzKfBOL4FTCoSuoA2XXHFMDTTFEC7',
   'NmEx6VCPwhxxLhB4XtFaMHTnE7Wehwlz1Kq0Y+gCVR+sIC5FrFNPQ8Fz6tI5ufzlZ+v/XXyjvPtvviFTWayNOOHmh7bjh444tagxxehazwyNzEfc+fRWnDp1',
-  'S+PbYlKlqHGk2i3+gsETOJ7u5V33/Q4+dTwTscWdx9s2/DqXn30h391xK9+d/hEznCI0HpmxWpIgLzSTJmf3b+N9H/8TNr5gBK/Xg/UZxEazw5lIJriWYPoF',
+  'S+PbYlKlqHGk2i3+gsETOJ7u5V34/Q4+dTwTscWdx9s2/DqXn30h391xK9+d/hEznCI0HpmxWpIgLzSTJmf3b+N9H/8TNr5gBK/Xg/UZxEazw5lIJriWYPoF',
   'b72i8wrHHRqjpaphW38ga24ICEMHLWX6kMfuqROM2wmZN1Pa1RaODCcBKopxuZk+ICA0FdT6gM850dlcWbuaz818iXE7wzYzwISexBJTEp+UMe62/8WsfYJR',
   'uYCLzPVcINeg0iSlRUO7jOkYHgGhpvQyglWlbvpIyGjojAyygUACTTTVugzmeYjqSQjatW2eVr6WC0qj/Ku7B4dQ0hoLzK8gGVqM5+NlPpBiVDGFLEgKerfx',
   '8g0QJff3rPg6MaTHBGkapEewGxR/IeOqg1v1t+I/42MLM0zqneqkKyJOUSsOUwjCHCIBFbOKmllP5Pry0CqWiqQAISRTJaWLI8ESa6JNyQEyMZk0SbVIAC56',
@@ -1821,7 +1821,7 @@ local imageData={
   '7entuiO7TRpMUJWS+oW7JlWLs0pIoKKWOM+B5FfeSFdyrvX073MWsIeswJZ7snISlZ9BdulRVFvAmqAOPGVDxMbRHnYe7MjOmaaGnpENdV+veWpZXvmysl59',
   'w1oGN9TxzAzabtOcbHPyUEemj7V16phqOepj3ZpLWP+cV1NlM5e88Vp+ctkpws5BmrO3y/zMpE6f7OKPliXrVHh0j9Xv3XtKDicTOpt1JJme1kq6mWEqHHTT',
   'tDVjyFSoinDuQEzfs4Y4dcsUez/0afpXl3no1kV+Op9y+0KDhhW6LnftYSggS7k6ZOvqKuf2+3zxvn1sKV/DtaPPYvqRNp4tEQQBSaqEIYgVkiSHcIkqLsmn',
-  'djgh9MC63Kc0WCnTXN3i5h3fxwcuDYchi9jVmAUxBVXPrSh5ihDq4gLIUlz9CmK8wxaSdI8uGSXKGOfJkeSgNhnH4dMWdMo12NPczg8er8hLBq7V33vq2znv',
+  'djgh9MC63Kc0WCnTXN3i5h3fxwcuDYchi9jVmAUxBVXPrSh5ihDq4gLIUlz9CmK8wxaSdI8uGSXKGOfJkeSgNhnH4dMWdMo12NPczg8er8hLBq7V34vq2znv',
   '4I/55tQ9dJ3iZwbEl5Ip6465R/n9e17Mhwd+gEn72RXPUROPA4zLFl1Dv1Tp4GhpgtUUEY/jusAIffSZCovapYuVIfq4yf6PbEpu4K3B78reeBeH9SG+eezb',
   'XB+9gAezm+nq/GmTat5mk0DQNE1JrEMNWFRU845j/vm4M+yvK49gH2R9f0A8ryxkvTJQ9VhszOVuxzCjskqRadAsn/jVg4DFbJHHJw7QJeCOmft5tncZlwxt',
   'Zj51SCSEA9A/CPU3CzIO3NRlgH6JfEOXjhQXxiWJtfTKBgbYRKAeaorLtvqFZK6wuhhHbGaYtHtpaQMjTlCjHiFWU6ni859/+p/S1+vpq/7Paxk2/dz63Zvo',
@@ -4727,7 +4727,7 @@ local imageData={
   'YKkkX299m2eiJ8SIRVNmiaQNZqJ5ylIgT0TCZf4tvLfvx2W6O82B+DARKbTC0VNPAhLpodIjwCMfCgvRDB+8Y4CRiscXHjhNp5tmavU0zT3rsx7lIE83iUDW',
   'EDlkU2jDOi7h+vw9dMw8r3X3ZR6ZgJgoO7t4U7JmIpo9R0rEbDSPFaEXC0emV1OYiTU4l2YVSuomZygss97r43x7ma44EnUy5o0haplz8xjj4RNIpAkeNhu0',
   'pXJ7gyVn8hmyPyEQH896qRw/w9374mMzD186zEnouVZ6RtsAEeH1hWW++Nw5HnhqkW7LY3h0PbkdEzKwNaSqHcQ61Aq5gket7NFf9ugrBlSKJWabMc/PtDiw',
-  '2KXhIMFiKZDTPkQLbDXX8h7/o6zqAl+K/4wpjiE4vOy8eLP3yGDxxCO0htBY1KUmwm01y0gOjs8n1KM0lN0TqFnDkGcZ9gL6jUfV96lZTyrWJ4cV33r0VGlL',
+  '2KXhIMFiKZDTPkQLbDXX8h7/o6zqAl+K/4wpjiE4vOy8eLP3yGDxxCO0htBY1KUmwm01y0gOjs8n1KM0lN0TqFnDkGcZ9gL6jUfV96lZTyrWJ4cV34r0VGlL',
   'woyrs+CaNOjhM0iNLZRIPeQFioSU8bVC5BSnadZlll5Im1YGX+qhJOrhi2/DLPsqdbiWqTEhmxn3NjHnOrwSH2V5ucN0Z4qXeAbBaZcWwzIsN5sbaWmd05zA',
   'Zn7eDp00d1Y8QinQUctS0uaqzQG7rhzkW9+Y58Rpx1BQIaclXmsqhxKfFUh36FkGpaLgkGoYsO+VDg8f7eCSgvhiaMUxzqXO1TefbikFc21TVqJLhyYzeAgx',
   'yma7h7fKOzkQvcJhDjMk/XSkSZc2DVZosUoqUkvIiUdJ8kQou+V6LvcvoWEX+ULvz3gp/i51zlIkFCOB5m1Bei6iS4ccJckxQIF1DLOZGiP0M8Zl5hq2sJc+',
@@ -5498,7 +5498,7 @@ local imageData={
   'uG9+FvqafTCTb0Dw8+g+9jlcetM12Fgs6Ykz5zDOI3SlmsZYSBBKi0RSshD0ZUAlHEiYvCgZj3ehUR9DO1+irtuAF7vlRJEAhYQBRavhnDojz3Efa4qpUKV0',
   'KceAc7GKiSmtRKoblmjNn6WgPBsTEUMTeY/MebqdPf7wt1+Fl//Yj4AbA4TWN9H/5Gfw7MfPYW0ZGJ6I8O5/exNsPIL/dt8p9ErGatthEAgmUjDMUCAEASRA',
   'RjCG6/FqRKGJFgayDZfJ1epaW+eoFVCeUbfXXj2qhJUxRsPTlPdhRkCqjTZZcTJBMzSshlCEAeXoSRCPlCuocgU1k8KFgJor6Xt++rulHlrUf3YBo8kYTj56',
-  'CI1mH83rrkZv7gFM3XCNvPLl++j0X96H09ZRhRLk4sAIKNHHcXtITNyk26fvoqLf402/zgliiqBV33e47VqK2GkRzyVKLpBxLn0eSEdtJRUnItJkxSGTLgXl',
+  'CI1mH83rrkZv7gFM3XCNvPLl++j0X96H09ZRhRLk4sAIKNHHcXtITNyk26fvoqLf402/zgliiqBV34e47VqK2GkRzyVKLpBxLn0eSEdtJRUnItJkxSGTLgXl',
   'kMsAMTy9tnY5Do4lWG4fwrODk3g4O4nT/SW86Z17cdfP3YKVBx9DdugMJt7wA1BthS/+wscwNj2CK985glDNQFEEqlQAXdkCoaqA1BCIrgBoHCACn6/vsuXw',
   '8iBYiPGIhzXCkS/AtwuYa16PaEeM/sMPgJTgwC3X4siDx3GyP5DgLTXRQBo0er4HEg1hJT3JiJgkk5yc9+gXm+i4NQmUE1gACcREW/fPTG2Zpy4WGZSpgD4X',
   '6KmAQjXSEWpUqty1C7RuV8hBiJhJQZETR/Ae754S+q0/fg+uuPvd8MZDsmfR+fgn8MRHlrC0TBieMNh2XQW77prCVz+1gE89uYbhJIHSBMNKlCggEBAYFVRl',
@@ -5739,7 +5739,7 @@ local imageData={
   'dwlLLLHCCjM3zZit+7bCU9WTI88YfP/sDPjVV9duampa2vCZBJMFS0mQVK1NfAjW5W5ivBLPxgs6NXNQYg1qBkbOjJcQKUFUxVqCV+lY5cdedw3/8jsuY/SB',
   'TzPIlQ8vbeNU6GLoph5rYLWEYic9RDtLgh01cNXCMEWM1QQo6OkYMQY1NUcOavLqhX4r7KxvsLXkBsPOmVC03nS5YzgtRmvoZEdW4EqHrRfF0Gg3kFDR7KYM',
   '+0OSJkRFqO9ovdD16g6JYofhpIqhtoSrQF0IVKG+MbyiGKEhSKao90q3fTGj0nK8WsVrzr7IYIMjQ/AISRIR14MQNCSISZm4iiIEgkR0VLmqE3FxbLSTKL7c',
-  '5rmvOsQV33A93/1fPqF//+A5YmvFO1UD6lEatLg6eqHusnsQRzAkPqiLxfpJEO+JXHARgFUBGr4h0GEz3tQjAO1F/eoG5J864n11AOozNSSrrMoVN10hsKKn',
+  '5rmvOsQV34A93/1fPqF//+A5YmvFO1UD6lEatLg6eqHusnsQRzAkPqiLxfpJEO+JXHARgFUBGr4h0GEz3tQjAO1F/eoG5J864n11AOozNSSrrMoVN10hsKKn',
   'eqk5AXRCLlmo7e6oYizGelGdlIUZ+UEiZCaLWl61onQ56o1aUqnTSz1IqpzTQ3vb8qY3XUZ2yPDEyoR3fmibL0wMLRthQ8UlC9BuwQMrsDqu91RQv4DsMRnt',
   '0CJXZZUmr5v5DzyvM8f9597JB8uP4zODdExN2XK1v3Hl6mwZAphQSwZEuRAUhJ09RwLkgMchAkdmhRfMT3PuXIszw5g8t1RuU1IvikesqdSVtbdLWal6rYNK',
   'dhQxWBCVHXVMnZEFMB5NRAkBaWRWNXe0FL7jVW/jsvbzufOvPkipjyH02a+nuWK/MDFw7KzH40jEMt1tEyYp4zKj3V5gYfEaeoPT9FYfZNEql8YlrVZF6Sv2',
@@ -6434,7 +6434,7 @@ local imageData={
   'RX/z1Mc0vRXm/4j/o8/4SW7rtVIXkJSU4UHHgAkrFyPYFWtlWWVjc5mpfXy+Q8OW1GWNljlK+ZmeGddCDlDKXPl2yljLl2asWpHzcMHHb32cH3/uA0z4/t/9',
   'hp9rn7ql7kRUcsK58EgklR0uoaHGfGpF2TGkB6pwC4r1PYUSBduGkctadQtcMGmVn0pCQQERpBC0s3np1mvSo/rRw85XFi6oirgQhJ0ypnLOcma0loNVMuU1',
   'GX3BDCwxoMwD5PLCuk2lv2C9TW4PASHkUF4HJk2YQBAOnEM6Y97NO1KKIqWWepNITqX8opJbhbdO4rybaoTeVVctY/Vt+aj63MovOhG6ssxbPAZX3sA5hEL6',
-  '+SvVckSSEpGD56hD+YCV0nM9pxJgbcfdJ9WcNfXQY8jbfpx3uJJfl8mWOZnU2G9l1Qo7d2lThYkTySI02GSNkhw50wWzE+VGPZ0XLHWLz4zmRgxjgJV33NF0',
+  '+SvVckSSEpGD56hD+YCV0nM9pxJgbcfdJ9WcNfXQY8jbfpx3uJJfl8mWOZnU2G9l1Qo7d2lThYkTySI02GSNkhw50wWzE+VGPZ0XLHWLz4zmRgxjgJV34NF0',
   'yYrVCJ6O+ZrO6jK4pl51j9QudO2VAAmVJp3cdErWLQaFRbNS61FyT75OWTZ1u6pM4cNuSxsgiSGTNUNNpWz+z4ZMaBTSN++STcZs1zqrQdf3IwuzK5acaqbK',
   '6663NJz0MsodhkaUF/mwLsrbEDqwcQynVgVNcLWIh98a6MgmamHSxJ49s4mF8xK5uaZCIO7YaxW+lQWkLhbpdBZ1ggm9aWM1C+4zVrkib55WOeW1Eo6ZVohI',
   'JGhmjiwyKjrdpQsVqdQ3y0EQqTXVXiWJ0NHjAJlu/T3VnyCSXlJ1yFSLiI5NNJRlzXNi8VzhV5WFu+DcL3LtJkd9Sd2HHGGtBNCTztCkK5EMJal+pGkbqEG6',
@@ -9967,7 +9967,7 @@ if not images.banner then
  make('TextLabel',{Size=UDim2.fromScale(1,1),BackgroundTransparency=1,Text='GDB HUB\nArte local indisponivel neste ambiente',TextWrapped=true,TextColor3=colors.gold,TextSize=22,Font=Enum.Font.GothamBold},banner)
  warn('[GDB HUB] Imagens locais nao carregadas; veja suporte a writefile/getcustomasset.')
 end
-local status=make('TextLabel',{Position=UDim2.fromOffset(0,169),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1,Text='GDB HUB - Farm sem limite de distância | V33',TextColor3=Color3.fromRGB(160,165,185),TextWrapped=true,TextSize=11,Font=Enum.Font.Gotham},body)
+local status=make('TextLabel',{Position=UDim2.fromOffset(0,169),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1,Text='GDB HUB - Farm sem limite de distância | V34',TextColor3=Color3.fromRGB(160,165,185),TextWrapped=true,TextSize=11,Font=Enum.Font.Gotham},body)
 local pages={}
 local navigation={}
 local function selectPage(name)
