@@ -123,6 +123,7 @@ local function drawIcon(parent,kind,position,size)
   piece(.29,.58,.42,.24,Color3.fromRGB(70,21,104)); piece(.33,.64,.34,.035,Color3.fromRGB(236,186,255))
   return icon
  end
+ return nil
 end
 local function drawArrow(parent,direction)
  return drawIcon(parent,direction=='down' and 'downarrow' or 'uparrow',UDim2.fromScale(0,0),UDim2.fromScale(1,1))
@@ -131,12 +132,13 @@ local rarityStyles={common={'rarity_common','Comum'},comum={'rarity_common','Com
 local function rarityStyle(info)
  if not info then return {nil,'Não identificada'} end
  if info.secret then return rarityStyles.secret end
- local key=string.lower(string.gsub(tostring(info.rarity or ''),'^%s*(.-)%s*$','%1'))
+ local key=string.lower((string.gsub(tostring(info.rarity or ''),'^%s*(.-)%s*$','%1')))
  return rarityStyles[key] or {nil,tostring(info.rarity or 'Não identificada')}
 end
 local function rarityImage(parent,info,position,size)
  local style=rarityStyle(info); local asset=style[1] and images[style[1]]
  if asset then return make('ImageLabel',{Name='RarityBadge',Position=position,Size=size,BackgroundTransparency=1,Image=asset,ScaleType=Enum.ScaleType.Fit,Active=false},parent) end
+ return nil
 end
 
 make=function(class,props,parent)
@@ -9945,7 +9947,7 @@ local imageData={
   'S4xldO3EFgtd/z9WJHGYushHMwAAAABJRU5ErkJggg=='
  }),
 }
-local artLoaded=loadImages(imageData)
+local _artLoaded=loadImages(imageData)
 local frame=make('Frame',{Size=UDim2.fromScale(.96,.94),Position=UDim2.fromScale(.02,.03),BackgroundColor3=colors.bg},gui); round(frame)
 make('UIStroke',{Color=colors.accent,Thickness=1.5},frame)
 local sizeConstraint=make('UISizeConstraint',{MaxSize=Vector2.new(1400,1000),MinSize=Vector2.new(320,240)},frame)
@@ -10336,7 +10338,7 @@ refreshOverview=function()
   heading(overviewRows,worldLabel(world))
   local entries={}
   for _,info in pairs(catalogCache.npcs) do if info.world==world then table.insert(entries,info) end end
-  table.sort(entries,function(a,b) if a.order~=b.order then return a.order<b.order end return a.name<b.name end)
+  table.sort(entries,function(a,b) if a.order~=b.order then return a.order<b.order end; return a.name<b.name end)
   local lines={}
   for _,info in ipairs(entries) do
    table.insert(lines,(info.isBoss and '[Boss/Secret] ' or '')..info.name..(info.available and (' - '..tostring(info.alive)..' vivos') or ' - guardado; sem dados atuais'))
@@ -10453,7 +10455,7 @@ local function readIndex()
  local report={version=3,world=world,userId=player.UserId,access=worldAccess(world),tasks={},entries={},note='Contadores da etapa exibida. Unknown não é pendente confirmado nem concluído.'}
  local rows={}
  for order,obj in ipairs(info:GetChildren()) do if obj:IsA('GuiObject') then table.insert(rows,{obj=obj,order=order}) end end
- table.sort(rows,function(a,b) if a.obj.LayoutOrder~=b.obj.LayoutOrder then return a.obj.LayoutOrder<b.obj.LayoutOrder end return a.order<b.order end)
+ table.sort(rows,function(a,b) if a.obj.LayoutOrder~=b.obj.LayoutOrder then return a.obj.LayoutOrder<b.obj.LayoutOrder end; return a.order<b.order end)
  local currentTask,category=nil,''
  for _,row in ipairs(rows) do
   local obj=row.obj
@@ -10506,9 +10508,9 @@ local function readIndex()
        entry.secret=(known and known.secret==true) or string.lower(tostring(entry.attributes.Rarity or (known and known.rarity) or ''))=='secret' or (entry.nameState=='green' and entry.rawName and string.find(entry.rawName,'?',1,true)~=nil) or false
        if entry.secret and entry.state~='complete' then
         entry.state='pending'; entry.reason='secret_last'
-       elseif entry.nameState=='green' and entry.state~='pending' then
+       elseif entry.nameState=='green' and tostring(entry.state)~='pending' then
         entry.state='complete'; entry.reason='green_name'
-       elseif entry.nameState=='red' and entry.state~='complete' then
+       elseif entry.nameState=='red' and tostring(entry.state)~='complete' then
         entry.state='pending'; entry.reason='red_name'
        end
        table.insert(report.entries,entry)
@@ -10694,8 +10696,12 @@ local function selectedWorldNames()
  local names={}; for _,id in ipairs(decodeList('farm.worlds')) do if id~='*' then table.insert(names,worldLabel(id)) end end
  table.sort(names); return names
 end
-local function saveList
-config['farm.npcSelection']='[]'; config['farm.bossOrder']='[]'
+local function saveList(key,value)
+ config[key]=HttpService:JSONEncode(value)
+ if requestSave then requestSave() end
+end
+if type(config['farm.npcSelection'])~='string' then config['farm.npcSelection']='[]' end
+if type(config['farm.bossOrder'])~='string' then config['farm.bossOrder']='[]' end
 controls['farm.npcSelection']=function() if refreshFarmView then refreshFarmView() end end
 controls['farm.bossOrder']=controls['farm.npcSelection']
 heading(left,'Mundo')
@@ -10708,7 +10714,7 @@ local npcSelector=button(left,'0 selecionados')
 dropdownArt(npcSelector)
 local npcPanel=listFrame(left); npcPanel.Visible=false
 local selectActions=make('Frame',{Size=UDim2.new(1,0,0,36),BackgroundTransparency=1},npcPanel)
-local actionLayout=make('UIListLayout',{FillDirection=Enum.FillDirection.Horizontal,HorizontalAlignment=Enum.HorizontalAlignment.Center,Padding=UDim.new(0,6),SortOrder=Enum.SortOrder.LayoutOrder},selectActions)
+local _actionLayout=make('UIListLayout',{FillDirection=Enum.FillDirection.Horizontal,HorizontalAlignment=Enum.HorizontalAlignment.Center,Padding=UDim.new(0,6),SortOrder=Enum.SortOrder.LayoutOrder},selectActions)
 local allNPC=button(selectActions,'Selecionar todos',UDim2.new(.5,-3,1,0))
 local clearNPC=button(selectActions,'Limpar todos',UDim2.new(.5,-3,1,0))
 local npcList=listFrame(npcPanel)
@@ -10924,7 +10930,7 @@ local function selectBoss(position)
  table.sort(pool,function(a,b) return a.distance<b.distance end)
  return pool[1]
 end
-local mobCycle={signature='',cursor=1,current=nil}
+local mobCycle={signature='',cursor=1,current=nil,total=0,available=0}
 local recentlyVisited=setmetatable({},{__mode='k'})
 local function selectMob(position)
  local selected=decodeList('farm.npcSelection')
@@ -10944,7 +10950,7 @@ local function selectMob(position)
  end
  local signature=HttpService:JSONEncode({ids,config['farm.worlds'],config['farm.mode']})
  if signature~=mobCycle.signature then
-  mobCycle={signature=signature,cursor=1,current=nil}
+  mobCycle={signature=signature,cursor=1,current=nil,total=0,available=0}
  end
  if #ids==0 then return nil end
  local availableCount=0
