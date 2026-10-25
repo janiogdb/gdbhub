@@ -128,6 +128,12 @@ end
 local function drawArrow(parent,direction)
  return drawIcon(parent,direction=='down' and 'downarrow' or 'uparrow',UDim2.fromScale(0,0),UDim2.fromScale(1,1))
 end
+local function dropdownArt(b)
+ make('UIPadding',{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,36)},b)
+ b.TextXAlignment=Enum.TextXAlignment.Left
+ local chevron=make('Frame',{Name='Chevron',Position=UDim2.new(1,-27,.5,-9),Size=UDim2.fromOffset(18,18),BackgroundTransparency=1,Active=false},b)
+ drawArrow(chevron,'down')
+end
 local rarityStyles={common={'rarity_common','Comum'},comum={'rarity_common','Comum'},uncommon={'rarity_uncommon','Incomum'},incomum={'rarity_uncommon','Incomum'},rare={'rarity_rare','Raro'},raro={'rarity_rare','Raro'},legendary={'rarity_legendary','Lendário'},['lendário']={'rarity_legendary','Lendário'},mythical={'rarity_mythical','Mítico'},mythic={'rarity_mythical','Mítico'},['mítico']={'rarity_mythical','Mítico'},secret={'rarity_secret','Secreto'},secreto={'rarity_secret','Secreto'},epic={'rarity_uncommon','Épico'},['épico']={'rarity_uncommon','Épico'}}
 local function rarityStyle(info)
  if not info then return {nil,'Não identificada'} end
@@ -9969,7 +9975,7 @@ if not images.banner then
  make('TextLabel',{Size=UDim2.fromScale(1,1),BackgroundTransparency=1,Text='GDB HUB\nArte local indisponivel neste ambiente',TextWrapped=true,TextColor3=colors.gold,TextSize=22,Font=Enum.Font.GothamBold},banner)
  warn('[GDB HUB] Imagens locais nao carregadas; veja suporte a writefile/getcustomasset.')
 end
-local status=make('TextLabel',{Position=UDim2.fromOffset(0,169),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1,Text='GDB HUB - Farm sem limite de distância | V36',TextColor3=Color3.fromRGB(160,165,185),TextWrapped=true,TextSize=11,Font=Enum.Font.Gotham},body)
+local status=make('TextLabel',{Position=UDim2.fromOffset(0,169),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1,Text='GDB HUB - Farm sem limite de distância | V37',TextColor3=Color3.fromRGB(160,165,185),TextWrapped=true,TextSize=11,Font=Enum.Font.Gotham},body)
 local pages={}
 local navigation={}
 local function selectPage(name)
