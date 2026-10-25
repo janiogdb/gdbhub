@@ -9969,7 +9969,7 @@ if not images.banner then
  make('TextLabel',{Size=UDim2.fromScale(1,1),BackgroundTransparency=1,Text='GDB HUB\nArte local indisponivel neste ambiente',TextWrapped=true,TextColor3=colors.gold,TextSize=22,Font=Enum.Font.GothamBold},banner)
  warn('[GDB HUB] Imagens locais nao carregadas; veja suporte a writefile/getcustomasset.')
 end
-local status=make('TextLabel',{Position=UDim2.fromOffset(0,169),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1,Text='GDB HUB - Farm sem limite de distância | V34',TextColor3=Color3.fromRGB(160,165,185),TextWrapped=true,TextSize=11,Font=Enum.Font.Gotham},body)
+local status=make('TextLabel',{Position=UDim2.fromOffset(0,169),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1,Text='GDB HUB - Farm sem limite de distância | V36',TextColor3=Color3.fromRGB(160,165,185),TextWrapped=true,TextSize=11,Font=Enum.Font.Gotham},body)
 local pages={}
 local navigation={}
 local function selectPage(name)
@@ -10040,6 +10040,28 @@ local function toggle(p,key,label,default)
  local function render() paint(config[key]) end
  controls[key]=render; render()
  b.Activated:Connect(function() config[key]=not config[key]; render(); emit(key,config[key]) end)
+end
+local function input(p,key,label,default)
+ if type(config[key])~='string' then config[key]=tostring(default or '') end
+ local multiline=key=='profile.json'
+ local field=make('TextBox',{
+  Size=UDim2.new(1,0,0,multiline and 120 or 38),
+  BackgroundColor3=colors.card,TextColor3=colors.text,
+  PlaceholderText=label,PlaceholderColor3=Color3.fromRGB(155,145,166),
+  Text=tostring(config[key] or ''),Font=Enum.Font.Gotham,TextSize=13,
+  TextWrapped=multiline,MultiLine=multiline,ClearTextOnFocus=false,
+  TextXAlignment=Enum.TextXAlignment.Left,
+  TextYAlignment=multiline and Enum.TextYAlignment.Top or Enum.TextYAlignment.Center,
+ },p)
+ round(field)
+ make('UIPadding',{PaddingLeft=UDim.new(0,10),PaddingRight=UDim.new(0,10),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)},field)
+ make('UIStroke',{Color=Color3.fromRGB(116,28,154),Thickness=1,ApplyStrokeMode=Enum.ApplyStrokeMode.Border},field)
+ controls[key]=function() field.Text=tostring(config[key] or '') end
+ field.FocusLost:Connect(function()
+  config[key]=field.Text
+  emit(key,field.Text)
+ end)
+ return field
 end
 config['farm.world']=''
 config['farm.worlds']='["*"]'
